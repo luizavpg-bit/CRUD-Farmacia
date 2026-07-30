@@ -145,6 +145,45 @@ mvn spring-boot:run
 
 ---
 
+## 🌸 Testes Unitários
+
+O projeto conta com testes automatizados utilizando **JUnit 5**, **Mockito** e banco de dados **H2** (em memória, exclusivo para os testes).
+
+### Estrutura dos testes
+
+```text
+src/test/java/com/generation/farmacia
+ ├── repository
+ │    └── CategoriaRepositoryTest.java
+ └── controller
+      ├── CategoriaControllerTest.java
+      └── ProdutoControllerTest.java
+```
+
+### O que é testado
+
+- **`CategoriaRepositoryTest`** — `@DataJpaTest`: valida a busca de categorias por descrição, utilizando um banco H2 em memória.
+- **`CategoriaControllerTest`** — `@WebMvcTest`: valida os retornos HTTP (`200 OK`, `404 Not Found`) do endpoint `/categorias`, com o repositório "mockado".
+- **`ProdutoControllerTest`** — `@WebMvcTest`: valida o retorno `200 OK` ao listar produtos.
+
+### Dependência necessária
+
+```xml
+<dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <scope>test</scope>
+</dependency>
+```
+
+### Como executar os testes
+
+```bash
+mvn test
+```
+
+---
+
 ## 🌸 Tecnologias utilizadas
 
 - Java 17
